@@ -1,1 +1,4 @@
-a)
+a) Como se puede ver en la imagen(*) los cambios realizados respecto al paso2 fui incluir las librerias necesarias en cada archivo para evitar que ocurran los errores mencionados en el paso2.
+
+b) (foto)
+   El error obtenido quiere(*etiqueto foto) decir que hay una referencia al nombre 'wordscounter_destroy' dentro del main la cual no fue encontrada su definicion en ninguno de los archivos objeto o las librerias incluidas. Este error ocurre en la etapa de linkeo ya que se busco la definicion en archivos externos al main.
