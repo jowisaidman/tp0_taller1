@@ -1,0 +1,18 @@
+a) Explicare a continuacion cada uno de los errores de estilo obtenidos luego de subir el paso1.zip
+a sercom. El numero que tiene entre corchetes cada error al final es que tan grave es segun los criterios de google (la puntuacion va de 1 a 5 siendo 5 la puntuacion maxima).
+Para el archivo paso1_wordscounter.c :
+1- ./paso1_wordscounter.c:27:  Missing space before ( in while(  [whitespace/parens] [5] : Se debe a que hubo un while que le falto estar entre parentesis en la linea 27.
+2- ./paso1_wordscounter.c:41:  Mismatching spaces inside () in if  [whitespace/parens] [5] : Habia mas espacios de un lado que de otro dentro de un if en la linea 41.
+3- ./paso1_wordscounter.c:41:  Should have zero or one spaces inside ( and ) in if  [whitespace/parens] [5] : Dentro de un if se debe dejar uno o cero espacios de cada lado (estos deben coincidir) en la linea 41.
+4- ./paso1_wordscounter.c:47:  An else should appear on the same line as the preceding }  [whitespace/newline] [4] : Se habia hecho un salto de linea antes del utilizar un else y este debe estar en la misma linea en la que se cierra la llave.
+5- ./paso1_wordscounter.c:47:  Missing space before ( in if(  [whitespace/parens] [5] : El codigo dentro del if ocupa mas de una linea por lo que el if de la linea 47 debe estar entre parentesis (a diferencia del que esta en la linea 44).
+6- ./paso1_wordscounter.c:52:  Extra space before last semicolon. If this should be an empty statement, use {} instead.  [whitespace/semicolon] [5]: Se dejo un espacio en blanco y luego se puso el ';', no debe haber espacios entre el anteultimo caracter de la linea y el ';' final.
+7- extra: ./paso1_wordscounter.h:5:  Lines should be <= 80 characters long  [whitespace/line_length] [2]: La catedra no lo concidero y google lo toma como un error leve (ya que tiene una puntuacion de 2) pero la linea supero los 80 caracteres.
+
+Para el archivo paso1_main.c :
+1- ./paso1_main.c:12:  Almost always, snprintf is better than strcpy  [runtime/printf] [4] : Por cuestiones de eficiencia recomeinda utilizar snprintf antes que strcpy.
+2- ./paso1_main.c:15:  An else should appear on the same line as the preceding }  [whitespace/newline] [4] : Se habia hecho un salto de linea antes del utilizar un else y este debe estar en la misma linea en la que se cierra la llave.
+3- ./paso1_main.c:15:  If an else has a brace on one side, it should have it on both  [readability/braces] [5] : Si un else tiene una llave en un lado debe tenerla en el otro tambien. Como el else debe ir en la misma linea que se cierra la llave del if, el mismo debe tener su codigo dentro de llaves por mas que ocupe una unica linea.
+
+
+
