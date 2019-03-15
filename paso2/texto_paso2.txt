@@ -1,0 +1,40 @@
+a) Respecto de la version anterior se corrigieron todos los errores de estilo que habia en los archivos del paso1. Se cambio strcpy por memcpy el cual tiene algunas ventajas, una de ellas es que strcpy copia solo cadenas mientras que memcpy copia n bytes sin importar que hay en ellos. Ademas se incluyo en el main la libreria "paso2_wordscounter.h" la cual era necesaria para no tener los errores de compilacion del paso1. El ultimo cambio es que en el archivo "paso2_wordscounter.h" se aclara que el contador ya no almacenara las palabras sino que las va procesar, esto alcanza para poder contar la cantidad de palabras.
+
+b) foto
+
+c) Comenzare explicando los siguientes errores que son originados por la misma causa:
+In file included from paso2_wordscounter.c:1:0:
+paso2_wordscounter.h:6:5: error: unknown type name ‘size_t’
+     size_t words;
+     ^~~~~~
+paso2_wordscounter.h:19:1: error: unknown type name ‘size_t’
+ size_t wordscounter_get_words(wordscounter_t *self);
+ ^~~~~~
+paso2_wordscounter.h:24:49: error: unknown type name ‘FILE’
+ void wordscounter_process(wordscounter_t *self, FILE *text_file);
+                                                 ^~~~
+Estos errores se deben a que se estan tratando de usar tipos de datos del cual el compilador no tiene niguna informacion, entonces no puede reservar espacio para el tipo de dato. La solucion a este problema es incluir dentro del archivo la libreria correspondiente (<stdio.h>).
+
+Otro error que se debe al mismo problema de no incluir la libreria correspondiente es el siguiente:
+paso2_wordscounter.c:18:8: error: conflicting types for ‘wordscounter_get_words’
+ size_t wordscounter_get_words(wordscounter_t *self) {
+        ^~~~~~~~~~~~~~~~~~~~~~
+In file included from paso2_wordscounter.c:1:0:
+paso2_wordscounter.h:19:8: note: previous declaration of ‘wordscounter_get_words’ was here
+ size_t wordscounter_get_words(wordscounter_t *self);
+
+El problema aca es que en el archivo paso2_wordscounter.c estaba incluida la libreria <stdio.h> entonces reconoce el tipo de dato que devuelve la funcion, en cambio en el archivo paso2_wordscounter.h no estaba incluida entonces el compilador da error a que la funcion ya fue declarada con un tipo en el archivo .c y esta declarada con otro tipo distinto en el archivo .h
+
+Finalmente el error:
+paso2_wordscounter.c: In function ‘wordscounter_next_state’:
+paso2_wordscounter.c:30:25: error: implicit declaration of function ‘malloc’ [-Wimplicit-function-declaration]
+     char* delim_words = malloc(7 * sizeof(char));
+                         ^~~~~~
+paso2_wordscounter.c:30:25: error: incompatible implicit declaration of built-in function ‘malloc’ [-Werror]
+paso2_wordscounter.c:30:25: note: include ‘<stdlib.h>’ or provide a declaration of ‘malloc’
+El mismo compilador nos da una ayuda aca, diciendonos que estamos utilizando una funcion de la libreria stdlib.h sin haberla incluido.
+Los errores de "unknown type name" y "implicit declaration of function" son al igual que en el paso1 errores previos a la etapa de compilacion.
+El error "conflicting types" tambien ocurre antes de la etapa de linkeo ya que estoy incluyendo el archivo paso2_wordscounter.h dentro del paso2_wordscounter.c y este se incluye previo a la etapa de linkeo entonces el error ocurre dentro de la etapa de compilacion.
+
+
+
