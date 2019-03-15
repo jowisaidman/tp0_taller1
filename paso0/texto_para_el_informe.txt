@@ -36,9 +36,12 @@ de acceder a los datos del struct.
 
 e) El archivo stdin es el archivo que entra con informacion al programa, el stdout
 es el que el sale con informacion comun del programa y el stderr es el archivo que
-contiene los errores que hubo en el programa. Se puede manejar mediante los caracteres
-'<' y '>' las salidas stdin, stdout y stderr. Se puede ver un ejemplo(*) de como la 
-salida del programa hecho en items anteriores (hola_mundo) es utilizada en otro txt. 
+contiene los errores que hubo en el programa. Se puede redireccionar mediante los caracteres
+'<' y '>' el stdin, stdout y stderr. Se puede ver un ejemplo(*) de como la 
+salida del programa hecho en items anteriores (hola_mundo) es copiada en un txt utilizando el caracter
+'>'. El comando pipe '|' es utilizado para crear tuberias, se puede conectar el stdout de un programa con el stdin
+de otro. Se utiliza de la forma: comando1 | comando2
+ 
 
 
 
