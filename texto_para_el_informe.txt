@@ -1,0 +1,44 @@
+b) Valgrind
+Es un software open source, de licencia gratuita, que permite detectar
+problemas de memoria y analizar el rendimiento de programas. Valgrind se 
+puede utilizar para crear nuevas herramientas de trabajo o utilizar las que ya
+existen. Actualmente posee seis herramientas para la depuracion de programas 
+(ayudan a identificar y  corregir errores de programacion en los programas) y 
+tres herramientas experimentales. Por el momento es posible utilizar Valgrind 
+en distintas plataformas de Linux, Solaris, Android y Darwin.
+Su herramienta de uso mas comun es Memcheck. Dicha herramienta permite detectar
+problemas como por ejemplo el uso de memoria no inicializada, fugas de memoria, 
+lectura/escritura de memoria que ya fue liberada entre otros errores.
+La principal desventaja de valgrind es que realentiza la ejecucion del programa, 
+consultando con distintas fuentes de internet realentiza el programa en el orden 
+de 10 a 30 veces mas lento. Se realizo la prueba para el programa anterior y el 
+orden fue superior, esto se debe a que valgrid tarda un tiempo fijo en inicializar 
+que para programas cortos el orden de veces que lo realentiza es mas notorio. 
+Para comprobar esto se realizo un programa similar donde la cantidad de veces que
+imprimia por pantalla "Hola Mundo" fue 50.000 y se puede ver que la cantidad de 
+veces que se realentizo el programa esta dentro del rango investigado en internet.
+
+https://stackoverflow.com/questions/29365611/does-running-valgrind-slow-down-my-application
+http://valgrind.org/docs/manual/quick-start.html  
+
+c) Sizeof()​
+La funcion sizeof()​ representa la cantidad de bytes ocupados por un tipo de dato.
+El valor de salida de sizeof(char) va ser *simpre* 1 byte, no depende del compilador
+en el que se este trabajando mientras que para sizeof(int) podra ser 2 bytes o 4 bytes
+dependiendo de si se esta trabajando con un compilador de 16 bits, 32 bits o 64 bits.
+
+d) El ​ sizeof()​ de una struct de C no es igual a la suma del sizeof() ​ de cada uno sus 
+elementos. Para corrobar esto se realizo un contra ejemplo donde se genero un programa
+que imprimia por pantalla el sizeof() de un struct que contenia un int, un char, un float 
+y un double y el resultado era distinto a la suma de cada uno de los sizeof(). Esto se 
+debe a que el compilador agrega padding con el objetivo de ganar velocidad al momento
+de acceder a los datos del struct.
+
+e) El archivo stdin es el archivo que entra con informacion al programa, el stdout
+es el que el sale con informacion comun del programa y el stderr es el archivo que
+contiene los errores que hubo en el programa. Se puede manejar mediante los caracteres
+'<' y '>' las salidas stdin, stdout y stderr. Se puede ver un ejemplo(*) de como la 
+salida del programa hecho en items anteriores (hola_mundo) es utilizada en otro txt. 
+
+
+
