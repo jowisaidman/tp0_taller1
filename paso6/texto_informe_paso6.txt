@@ -1,0 +1,1 @@
+a) Se definio a DELIM_WORDS como una constante global, ademas se corrigio la funcion wordscounter_next_state de forma que si el proximo caracter encontrado es el EOF y esta en una palabra el contador sume, de esta forma se corrigio el caso de un archivo de una sola palabra.
