@@ -1,0 +1,3 @@
+a) El principal cambio fue hecho en el archivo "paso4_wordscounter.c" el cual se incluyo la definicion de la funcion "wordscounter_destroy(wordscounter_t *self)". Ademas se cambio el nombre de la libreria "paso4_wordscounter.h", lo que causo que se vea en la imagen el cambio de los include (es un cambio irrelevante).
+
+b) 
