@@ -1,3 +1,41 @@
 a) El principal cambio fue hecho en el archivo "paso4_wordscounter.c" el cual se incluyo la definicion de la funcion "wordscounter_destroy(wordscounter_t *self)". Ademas se cambio el nombre de la libreria "paso4_wordscounter.h", lo que causo que se vea en la imagen el cambio de los include (es un cambio irrelevante).
 
-b) 
+b) (Foto*) Valgrind nos esta reportando que pedimos memoria para alocar bytes y nunca la liberamos. Podemos ver un resumen de la cantidad de bytes utilizdos, cuantas veces pedimos memoria, cuantas veces la liberamos y saber que cantidad de bytes dejamos en uso al momento del cierre del programa en el Heap Summary:
+'==00:00:00:00.577 2806== HEAP SUMMARY:
+==00:00:00:00.577 2806==     in use at exit: 1,849 bytes in 216 blocks
+==00:00:00:00.577 2806==   total heap usage: 218 allocs, 2 frees, 10,041 bytes allocated'
+Luego podemos ver mas en detalle porque perdimos memoria, en este caso fueron dos errores distintos. El primero, que dice:
+'==00:00:00:00.578 2806== 344 bytes in 1 blocks are still reachable in loss record 1 of 2
+==00:00:00:00.578 2806==    at 0x402D17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==00:00:00:00.578 2806==    by 0x409C279: __fopen_internal (iofopen.c:69)
+==00:00:00:00.578 2806==    by 0x409C33D: fopen@@GLIBC_2.1 (iofopen.c:97)
+==00:00:00:00.578 2806==    by 0x8048517: main (paso4_main.c:14)'
+Este error indica que en el main se abrio un archivo y luego nunca fue cerrado, esto causo una perdida de memoria de 344 bytes. El segundo error que obtuve fue:
+'==00:00:00:00.578 2806== 1,505 bytes in 215 blocks are definitely lost in loss record 2 of 2
+==00:00:00:00.578 2806==    at 0x402D17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==00:00:00:00.578 2806==    by 0x8048685: wordscounter_next_state (paso4_wordscounter.c:35)
+==00:00:00:00.578 2806==    by 0x8048755: wordscounter_process (paso4_wordscounter.c:30)
+==00:00:00:00.578 2806==    by 0x8048535: main (paso4_main.c:24)'
+Esto quiere decir que hubo un llamado encadenado, primero el main llamo a wordscounter_process, luego wordscounter_process llamo a wordscounter_next_state y dentro de esta ultima fue llamada la funcion malloc. Los malloc no fueron liberados y fueron ejecutados 215 veces perdiendo un total de 1505 bytes. 
+
+c) (Foto*)En este caso el error reportado por valgrind fue que hubo un buffer overflow dentro de la funcion main. Como se puede ver en la imagen(*), lo que ocurrio fue que la funcion memcpy quiso poner una cantidad de datos mayor a la que el buffer puede soportar. La prueba que se hacer es si el contador de palabras puede ejecutarse con archivos grandes y como la funcion memcpy esta siendo utilizada de forma que copie todo el archivo junto no entraron todos los datos en el buffer.
+Referencia:
+https://www.owasp.org/index.php/Buffer_Overflow
+
+d) Utilizando la funcion strncpy ocurriria el mismo error ya que se trataria de copiar el archivo entero y no se podria. (ESTA BASTANTE FLOJA LA RESPUESTA)
+Referencia:
+https://randomascii.wordpress.com/2013/04/03/stop-using-strncpy-already/
+
+e)
+
+
+
+
+
+
+
+
+
+
+
+
