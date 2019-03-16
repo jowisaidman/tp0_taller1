@@ -34,12 +34,3 @@ https://smallbusiness.chron.com/segmentation-fault-linux-27699.html
 https://www.owasp.org/index.php/Buffer_Overflow
 http://web.mit.edu/10.001/Web/Tips/tips_on_segmentation.html
 
-
-
-
-
-
-
-
-
-

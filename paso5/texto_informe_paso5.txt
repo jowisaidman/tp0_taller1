@@ -1,0 +1,25 @@
+a) (Foto) Uno de los cambios que se puede ver en la imagen(*) es que delim_words era un puntero a un string mutable que se guardaba en memoria dinamica y ahora paso a ser un puntero a un string inmutable que no ocupa memoria dinamica (D1). Otro cambio es que ya el main no utiliza memcpy entonces el archivo no se esta nunca todo el archivo junto en memoria (ya pasa el test de longfile). El ultimo cambio es que ahora dentro del main se cierra el archivo de entrada entonces no ocurre perdida de memoria por dejar el archivo abierto.
+
+b) (Foto) La prueba de ‘Invalid File’ falla porque el programa se queda colgado buscando una proxima palabra en la funcion 'wordscounter_process', esta funcion contiene un ciclo while que se ejecuta hasta encontrar la proxima palabra pero como nunca la encuentra no sale del bucle. La ayuda que da sercom para esta falla es que esperaba un error que devuelva 1 y obtuvo otro que es 255.
+La prueba de ‘Single Word’ falla por que la salida que da el programa no es la que deberia ser, indica que hay 0 palabras cuando enrealidad el archivo contiene 1 palabra. Esto ocurre por que el archivo no tiene ninguno de los caracteres que se utilizan como separadores de palabras entonces el programa no cuenta la palabra que contiene el archivo y el resultado da 0 cuando deberia ser 1. Para este caso sercom dice que: 
+"La salida estándar no coincide con lo esperado (archivo "__stdout__.diff")." y se puede ver que el stdout es un 0 cuando deberia ser un 1.
+En la imagen(*) se puede ver que sercom indica claramente que pruebas fallan en color rojo, da observaciones sobre porque fallo y se pueden descargar los archivos utilizados en la prueba para poder correrlo localmente hasta poder corregir el test.
+
+c) (Foto) En la imagen(*) se puede ver que el ultimo caracter es un 64, que esta en base hexadecimal. Este numero al pasarlo a decimal es un 100 y viendo su valor en la tabla ASCII es una 'd', que es la ultima letra de la palabra que contiene el archivo.
+
+d) (Foto) info functions: Da informacion sobre las funciones en el programa.
+list wordscounter_next_state : Imprime las lineas que estan alrededor de la funcion wordscounter_next_state
+list: Imprime las siguientes 10 lineas de la ultima que se vio.
+break 45: El comando break trata ejecutar el programa hasta llegar a la linea indicada, en este caso 45.
+run input_single_word.txt : Corre el programa utilizando de input el archivo input_single_word.txt
+El debbuger no se detuvo en el breakpoint de la linea 45 porque no ejecuto dicha linea, el breakpoint hubiera ocurrido si el programa pasaba por la linea indicada.
+
+
+
+
+
+
+
+
+D1: como no esta en memoria dinamica ahora es inmutable? o podria ser un const char en memoria dinamica y que sea inmutable tambien? Cual era el objetivo de tenerlo en memoria dinamica antes?
+
