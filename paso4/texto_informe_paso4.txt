@@ -26,9 +26,13 @@ d) Utilizando la funcion strncpy ocurriria el mismo error ya que se trataria de 
 Referencia:
 https://randomascii.wordpress.com/2013/04/03/stop-using-strncpy-already/
 
-e)
-
-
+e) El error de 'segmentation fault' indica que hubo un acceso a memoria que no estaba permitido, ya sea leer o escribir sobre memoria la cual no fue pedida​ o que esta más allá de los límites que el sistema operativo guardo para la ejecucion de nuestro programa.
+El error '​buffer overflow' ocurre cuando un programa intenta colocar más datos en un búfer de los que puede contener o trata de colocar datos en un área de memoria más allá del búfer utilizado, un ejemplo de este error fue el visto en el punto c de este paso.
+Un error de segmentation fault puede estar causado por un buffer overflow ya que se esta tratando de acceder a memoria que el programa no tiene los derechos para acceder
+Referencias:
+https://smallbusiness.chron.com/segmentation-fault-linux-27699.html
+https://www.owasp.org/index.php/Buffer_Overflow
+http://web.mit.edu/10.001/Web/Tips/tips_on_segmentation.html
 
 
 
